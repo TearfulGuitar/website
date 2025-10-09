@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FashionWear Hub</title>
+    <title>Orisons Fashion Wear</title>
     <style>
         /* Reset and base styles */
         * {
@@ -51,6 +51,7 @@
             display: flex;
             list-style: none;
             gap: 1.5rem;
+            align-items: center;
         }
 
         nav ul li a {
@@ -61,6 +62,121 @@
 
         nav ul li a:hover {
             color: #2563eb;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-icon::after {
+            content: attr(data-count);
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #2563eb;
+            color: #ffffff;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: auto;
+            border-radius: 0.25rem;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            margin-left: 1rem;
+        }
+
+        .cart-item-details h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .cart-item input {
+            width: 60px;
+            padding: 0.25rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+        }
+
+        .cart-item button {
+            background-color: #dc2626;
+            color: #ffffff;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .cart-actions {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-actions button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+        }
+
+        .cart-actions .checkout-btn {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+
+        .cart-actions .close-btn {
+            background-color: #6b7280;
+            color: #ffffff;
         }
 
         /* Hero Section */
@@ -82,17 +198,18 @@
             margin-bottom: 1.5rem;
         }
 
-        #home a {
+        #home button {
             background-color: #ffffff;
             color: #2563eb;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
-            text-decoration: none;
+            border: none;
             font-weight: 600;
+            cursor: pointer;
             transition: background-color 0.3s;
         }
 
-        #home a:hover {
+        #home button:hover {
             background-color: #e5e7eb;
         }
 
@@ -119,12 +236,23 @@
             background-color: #ffffff;
             padding: 4rem 1rem;
             text-align: center;
+            display: none; /* Initially hidden */
         }
 
         #collections h2 {
             font-size: 1.875rem;
             font-weight: bold;
             margin-bottom: 2rem;
+        }
+
+        .category {
+            margin-bottom: 2rem;
+        }
+
+        .category h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         .collections-grid {
@@ -149,10 +277,34 @@
             margin-bottom: 1rem;
         }
 
-        .collection-card h3 {
+        .collection-card h4 {
             font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-card p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-card .price {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .collection-card button {
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .collection-card button:hover {
+            background-color: #1e40af;
         }
 
         /* Contact Section */
@@ -255,7 +407,7 @@
             }
 
             .collections-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -264,22 +416,38 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">Orisons Fashion Wear</div>
+            <div class="logo">Orisons FashionWear</div>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#collections">Collections</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li>
+                    <span class="cart-icon" id="cartIcon" data-count="0">🛒</span>
+                </li>
             </ul>
         </nav>
     </header>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <h2>Your Shopping Cart</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal">Total: $0.00</div>
+            <div class="cart-actions">
+                <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+                <button class="close-btn" id="closeCartBtn">Close</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home">
         <div>
             <h1>Elevate Your Style with Trendy Fashion Wear</h1>
             <p>Discover the latest trends in clothing and accessories to make every outfit unforgettable.</p>
-            <a href="#contact">Shop Now</a>
+            <button id="shopNowBtn">Shop Now</button>
         </div>
     </section>
 
@@ -287,7 +455,7 @@
     <section id="about">
         <div>
             <h2>About Us</h2>
-            <p>At Orisons Fashion Wear, we are passionate about bringing you the freshest fashion trends for men and women. Our curated collections focus on quality, style, and affordability, helping you express your unique personality through clothing and accessories.</p>
+            <p>At Orisons Fashion Wear, we are passionate about bringing you the freshest fashion trends for men, women, and children. Our curated collections, including unique crocheted wear, focus on quality, style, and affordability.</p>
         </div>
     </section>
 
@@ -295,21 +463,64 @@
     <section id="collections">
         <div>
             <h2>Our Collections</h2>
-            <div class="collections-grid">
-                <div class="collection-card">
-                    <img src="https://splurgestoreonline.com/cdn/shop/articles/Splurge-Blog-12-24_3c2c6adb-5b2e-4ee5-a153-a60a9412e43a.jpg?v=1744228379" alt="Stylish Women's Dress">
-                    <h3>Women's Dresses</h3>
-                    <p>Elegant and trendy dresses for every occasion.</p>
+            <!-- Men's Section -->
+            <div class="category">
+                <h3>Men's Wear</h3>
+                <div class="collections-grid">
+                    <div class="collection-card" data-id="mens-shirt" data-name="Casual Shirt" data-price="39.99" data-image="https://perkclothing.com/cdn/shop/articles/ls_outside_1016_1200x1200_crop_center.jpg?v=1655826119">
+                        <img src="https://perkclothing.com/cdn/shop/articles/ls_outside_1016_1200x1200_crop_center.jpg?v=1655826119" alt="Men's Casual Shirt">
+                        <h4>Casual Shirt</h4>
+                        <p>Comfortable and stylish shirt for everyday wear.</p>
+                        <p class="price">$39.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                    <div class="collection-card" data-id="mens-jacket" data-name="Denim Jacket" data-price="59.99" data-image="https://images.menswearhouse.com/is/image/TMW/MW40_1401_01_JOS_A_BANK_CLOTHING_ON_SALE_TOP_NAV?$40MainNav$&fmt=webp">
+                        <img src="https://images.menswearhouse.com/is/image/TMW/MW40_1401_01_JOS_A_BANK_CLOTHING_ON_SALE_TOP_NAV?$40MainNav$&fmt=webp" alt="Men's Denim Jacket">
+                        <h4>Denim Jacket</h4>
+                        <p>Classic denim jacket for a rugged, trendy look.</p>
+                        <p class="price">$59.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
-                <div class="collection-card">
-                    <img src="https://m.media-amazon.com/images/I/81O2+GqLqNL._UY1000_.jpg" alt="Fashion Accessories and Jewelry">
-                    <h3>Accessories</h3>
-                    <p>Stylish jewelry and add-ons to complete your look.</p>
+            </div>
+            <!-- Women's Section -->
+            <div class="category">
+                <h3>Women's Wear</h3>
+                <div class="collections-grid">
+                    <div class="collection-card" data-id="womens-dress" data-name="Elegant Dress" data-price="49.99" data-image="https://splurgestoreonline.com/cdn/shop/articles/Splurge-Blog-12-24_3c2c6adb-5b2e-4ee5-a153-a60a9412e43a.jpg?v=1744228379">
+                        <img src="https://splurgestoreonline.com/cdn/shop/articles/Splurge-Blog-12-24_3c2c6adb-5b2e-4ee5-a153-a60a9412e43a.jpg?v=1744228379" alt="Women's Dress">
+                        <h4>Elegant Dress</h4>
+                        <p>Stylish dress perfect for any occasion.</p>
+                        <p class="price">$49.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                    <div class="collection-card" data-id="womens-crochet" data-name="Crocheted Top" data-price="29.99" data-image="https://m.media-amazon.com/images/I/61M4smGCL6L._AC_UY1000_.jpg">
+                        <img src="https://m.media-amazon.com/images/I/61M4smGCL6L._AC_UY1000_.jpg" alt="Crocheted Top">
+                        <h4>Crocheted Top</h4>
+                        <p>Handcrafted crocheted top for a unique style.</p>
+                        <p class="price">$29.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
-                <div class="collection-card">
-                    <img src="https://perkclothing.com/cdn/shop/articles/ls_outside_1016_1200x1200_crop_center.jpg?v=1655826119" alt="Men's Casual Wear">
-                    <h3>Men's Casual Wear</h3>
-                    <p>Comfortable and fashionable outfits for daily wear.</p>
+            </div>
+            <!-- Children's Section -->
+            <div class="category">
+                <h3>Children's Wear</h3>
+                <div class="collections-grid">
+                    <div class="collection-card" data-id="child-crochet" data-name="Crocheted Top" data-price="19.99" data-image="https://i5.walmartimages.com/seo/Emibrio-Girls-Crochet-Lace-Trim-Camisole-Spaghetti-Strap-Tank-Top_7c8c7d2a-9c45-4d6e-a3db-0c0eabf46a14.6fd1b4c2c09b6ca2c3a2e6b4d8fbed83.jpeg">
+                        <img src="https://i5.walmartimages.com/seo/Emibrio-Girls-Crochet-Lace-Trim-Camisole-Spaghetti-Strap-Tank-Top_7c8c7d2a-9c45-4d6e-a3db-0c0eabf46a14.6fd1b4c2c09b6ca2c3a2e6b4d8fbed83.jpeg" alt="Children's Crocheted Top">
+                        <h4>Crocheted Top</h4>
+                        <p>Adorable crocheted top for kids.</p>
+                        <p class="price">$19.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                    <div class="collection-card" data-id="child-set" data-name="Casual Set" data-price="24.99" data-image="https://www.jcpenney.com/images/kids-clothing.jpg">
+                        <img src="https://www.jcpenney.com/images/kids-clothing.jpg" alt="Children's Casual Set">
+                        <h4>Casual Set</h4>
+                        <p>Comfy and stylish outfit for active kids.</p>
+                        <p class="price">$24.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,46 +536,4 @@
                     <input type="text" id="name" placeholder="Your Name">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Your Email">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" placeholder="Your Message"></textarea>
-                </div>
-                <button id="submitBtn">Send Message</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div>
-            <p>&copy; 2025 FashionWear Hub. All rights reserved.</p>
-            <div>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Basic form submission handling (for demonstration)
-        document.getElementById('submitBtn').addEventListener('click', () => {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            if (name && email && message) {
-                alert('Thank you for your message! We will get back to you soon.');
-                // Reset form
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
-            } else {
-                alert('Please fill out all fields.');
-            }
-        });
-    </script>
-</body>
-</html>
+                    <label for="email">Email</label
