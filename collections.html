@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orisons Fashion Wear - Collections</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            color: #1f2937;
+            background-color: #f3f4f6;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #1f2937;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #2563eb;
+        }
+
+        /* Collections Section */
+        #collections {
+            background-color: #ffffff;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        #collections h2 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .category {
+            margin-bottom: 2rem;
+        }
+
+        .category h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .collection-card {
+            padding: 1.5rem;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .collection-card h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-card p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-card .price {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .collections-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Orisons Fashion Wear</div>
+            <ul>
+                <li><a href="index.html">Back to Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Collections Section -->
+    <section id="collections">
+        <div>
+            <h2>Our Collections</h2>
+            <!-- Men's Section -->
+            <div class="category">
+                <h3>Men's Wear</h3>
+                <div class="collections-grid">
+                    <div class="collection-card">
+                        <img src="https://perkclothing.com/cdn/shop/articles/ls_outside_1016_1200x1200_crop_center.jpg?v=1655826119" alt="Men's Casual Shirt">
+                        <h4>Casual Shirt</h4>
+                        <p>Comfortable and stylish shirt for everyday wear.</p>
+                        <p class="price">$39.99</p>
+                    </div>
+                    <div class="collection-card">
+                        <img src="https://images.menswearhouse.com/is/image/TMW/MW40_1401_01_JOS_A_BANK_CLOTHING_ON_SALE_TOP_NAV?$40MainNav$&fmt=webp" alt="Men's Denim Jacket">
+                        <h4>Denim Jacket</h4>
+                        <p>Classic denim jacket for a rugged, trendy look.</p>
+                        <p class="price">$59.99</p>
+                    </div>
+                    <div class="collection-card">
+                        <img src="https://m.media-amazon.com/images/I/71y3+-A3y5L._AC_UY1000_.jpg" alt="Men's Crocheted Sweater">
+                        <h4>Crocheted Sweater</h4>
+                        <p>Handcrafted crocheted sweater for a unique style.</p>
+                        <p class="price">$49.99</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Women's Section -->
+            <div class="category">
+                <h3>Women's Wear</h3>
+                <div class="collections-grid">
+                    <div class="collection-card">
+                        <img src="https://splurgestoreonline.com/cdn/shop/articles/Splurge-Blog-12-24_3c2c6adb-5b2e-4ee5-a153-a60a9412e43a.jpg?v=1744228379" alt="Women's Elegant Dress">
+                        <h4>Elegant Dress</h4>
+                        <p>Stylish dress perfect for any occasion.</p>
+                        <p class="price">$49.99</p>
+                    </div>
+                    <div class="collection-card">
+                        <img src="https://m.media-amazon.com/images/I/61M4smGCL6L._AC_UY1000_.jpg" alt="Women's Crocheted Top">
+                        <h4>Crocheted Top</h4>
+                        <p>Handcrafted crocheted top for a unique style.</p>
+                        <p class="price">$29.99</p>
+                    </div>
+                    <div class="collection-card">
+                        <img src="https://www.forever21.com/dw/image/v2/BFKC_PRD/on/demandware.static/-/Sites-f21-master-catalog/default/dwe6c7b1e9/3_quarter/00499092_01_1.jpg?sw=300&sh=450" alt="Women's Maxi Skirt">
+                        <h4>Maxi Skirt</h4>
+                        <p>Flowy and elegant skirt for a chic look.</p>
+                        <p class="price">$34.99</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Children's Section -->
+            <div class="category">
+                <h3>Children's Wear</h3>
+                <div class="collections-grid">
+                    <div class="collection-card">
+                        <img src="https://i5.walmartimages.com/seo/Emibrio-Girls-Crochet-Lace-Trim-Camisole-Spaghetti-Strap-Tank-Top_7c8c7d2a-9c45-4d6e-a3db-0c0eabf46a14.6fd1b4c2c09b6ca2c3a2e6b4d8fbed83.jpeg" alt="Children's Crocheted Top">
+                        <h4>Crocheted Top</h4>
+                        <p>Adorable crocheted top for kids.</p>
+                        <p class="price">$19.99</p>
+                    </div>
+                    <div class="collection-card">
+                        <img src="https://www.jcpenney.com/images/kids-clothing.jpg" alt="Children's Casual Set">
+                        <h4>Casual Set</h4>
+                        <p>Comfy and stylish outfit for active kids.</p>
+                        <p class="price">$24.99</p>
+                    </div>
+                    <div class="collection-card">
+                        <img src="https://m.media-amazon.com/images/I/81yO5F2vWTL._AC_UY1000_.jpg" alt="Children's Crocheted Dress">
+                        <h4>Crocheted Dress</h4>
+                        <p>Charming crocheted dress for young fashionistas.</p>
+                        <p class="price">$29.99</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
