@@ -1,0 +1,223 @@
+/* ----------------------------
+   Orisons Fashion - Boutique Theme
+   ---------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+  background-color: #f8f5f0;
+  color: #3b3b3b;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Header */
+header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .logo {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #7b5e3b;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #3b3b3b;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #7b5e3b;
+}
+
+/* Hero */
+.hero {
+  background-color: #e8dfd1;
+  color: #3b3b3b;
+  padding: 5rem 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+}
+
+.btn {
+  background-color: #7b5e3b;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #5e442a;
+}
+
+/* About */
+.about {
+  background-color: #fff;
+  padding: 4rem 1rem;
+}
+
+.about h2 {
+  color: #7b5e3b;
+  margin-bottom: 1rem;
+}
+
+/* Collections */
+.collections {
+  background-color: #fff;
+  padding: 4rem 1rem;
+}
+
+.collections h2 {
+  color: #7b5e3b;
+  margin-bottom: 2rem;
+}
+
+.category {
+  margin-bottom: 3rem;
+}
+
+.category h3 {
+  color: #5e442a;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: #f8f5f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.card h4 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  color: #7b5e3b;
+  font-weight: bold;
+}
+
+/* Contact */
+.contact {
+  background-color: #e8dfd1;
+  padding: 4rem 1rem;
+}
+
+.contact-form {
+  max-width: 500px;
+  margin: 2rem auto 0;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #d1c7b7;
+  border-radius: 0.3rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #7b5e3b;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Footer */
+footer {
+  background-color: #3b3b3b;
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+footer .socials a {
+  color: #d9c9a3;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+footer .socials a:hover {
+  color: #ffffff;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
